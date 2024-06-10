@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  quizify-auth-service:
+    image: quizify-auth-service:latest
+    build: ./quizify-auth-service
+    ports:
+      - "8000:5000"
+    networks:
+      - quizify-net
+    deploy:
+      replicas: 3
+
+  quizify-quiz-service:
+    image: quizify-quiz-service:latest
+    build: ./quizify-quiz-service
+    ports:
+      - "8001:5001"
+    networks:
+      - quizify-net
+    deploy:
+      replicas: 3
+
+  quizify-scoring-service:
+    image: quizify-scoring-service:latest
+    build: ./quizify-scoring-service
+    ports:
+      - "8002:5003"
+    networks:
+      - quizify-net
+    deploy:
+      replicas: 3
+
+networks:
+  quizify-net:
